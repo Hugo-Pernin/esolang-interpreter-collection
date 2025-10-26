@@ -13,10 +13,24 @@ int main() {
     fptr = fopen(path, "r");
 
     if (fptr == NULL) {
-        printf("Error opening the file.\n");
+        printf("\nError opening the file.\n");
     }
     else {
-        printf("File opened successfully.\n");
+        printf("\nFile opened successfully.\n");
+
+        char c;
+
+        do {
+            c = fgetc(fptr);
+
+            if (feof(fptr)) {
+                break;
+            }
+
+            printf("%c", c);
+        } while(1);
+
+        printf("\n");
     }
 
     return 0;
