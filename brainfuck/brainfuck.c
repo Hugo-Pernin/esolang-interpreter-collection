@@ -56,6 +56,7 @@ int main() {
                     printf("%c", array[index]);
                     break;
                 case ',':
+                    scanf(" %c", &array[index]);
                     break;
                 case '[':
                     if (array[index] == 0) {
