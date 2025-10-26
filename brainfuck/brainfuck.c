@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define MAX_PATH_LENGTH 4096
 #define ARRAY_SIZE 30000
@@ -22,6 +23,8 @@ int main() {
         char character;
         short index = 0;
         char array[ARRAY_SIZE] = { 0 };
+        long* openingBrackets = NULL;
+        int openingBracketsLastIndex = -1;
 
         do {
             character = fgetc(fptr);
@@ -55,8 +58,28 @@ int main() {
                 case ',':
                     break;
                 case '[':
+                    if (array[index] == 0) {
+                        while (1) {
+                            character = fgetc(fptr);
+                            if (character == ']') {
+                                break;
+                            }
+                        }
+                    }
+                    else {
+                        openingBracketsLastIndex++;
+                        openingBrackets = realloc(openingBrackets, (openingBracketsLastIndex + 1) * sizeof(long));
+                        openingBrackets[openingBracketsLastIndex] = ftell(fptr);
+                    }
                     break;
                 case ']':
+                    if (array[index] != 0) {
+                        fseek(fptr, openingBrackets[openingBracketsLastIndex], SEEK_SET);
+                    }
+                    else {
+                        openingBracketsLastIndex--;
+                        openingBrackets = realloc(openingBrackets, (openingBracketsLastIndex + 1) * sizeof(long));
+                    }
                     break;
                 default:
                     break;
