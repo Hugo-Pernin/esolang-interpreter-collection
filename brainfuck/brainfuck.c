@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-const int MAX_PATH_LENGTH = 4096;
+#define MAX_PATH_LENGTH 4096
+#define ARRAY_SIZE 30000
 
 int main() {
     printf("----- Brainfuck interpreter -----\n");
@@ -13,21 +14,53 @@ int main() {
     fptr = fopen(path, "r");
 
     if (fptr == NULL) {
-        printf("\nError opening the file.\n");
+        printf("Error opening the file.\n");
     }
     else {
-        printf("\nFile opened successfully.\n");
+        printf("File opened successfully.\n");
 
-        char c;
+        char character;
+        short index = 0;
+        char array[ARRAY_SIZE] = { 0 };
 
         do {
-            c = fgetc(fptr);
+            character = fgetc(fptr);
 
             if (feof(fptr)) {
                 break;
             }
 
-            printf("%c", c);
+            switch (character) {
+                case '>':
+                    index++;
+                    if (index >= ARRAY_SIZE) {
+                        index = 0;
+                    }
+                    break;
+                case '<':
+                    index--;
+                    if (index < 0) {
+                        index = ARRAY_SIZE-1;
+                    }
+                    break;
+                case '+':
+                    array[index]++;
+                    break;
+                case '-':
+                    array[index]--;
+                    break;
+                case '.':
+                    printf("%c", array[index]);
+                    break;
+                case ',':
+                    break;
+                case '[':
+                    break;
+                case ']':
+                    break;
+                default:
+                    break;
+            }
         } while(1);
 
         printf("\n");
