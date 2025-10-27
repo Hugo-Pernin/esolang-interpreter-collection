@@ -22,7 +22,7 @@ int main() {
 
         char character;
         short index = 0;
-        char array[ARRAY_SIZE] = { 0 };
+        unsigned char array[ARRAY_SIZE] = { 0 };
         long* openingBrackets = NULL;
         int openingBracketsLastIndex = -1;
 
