@@ -25,6 +25,8 @@ int main() {
         unsigned char array[ARRAY_SIZE] = { 0 };
         long* openingBrackets = NULL;
         int openingBracketsLastIndex = -1;
+        char running;
+        int depth;
 
         do {
             character = fgetc(fptr);
@@ -60,10 +62,18 @@ int main() {
                     break;
                 case '[':
                     if (array[index] == 0) {
-                        while (1) {
+                        depth = 0;
+                        running = 1;
+                        while (running) {
                             character = fgetc(fptr);
-                            if (character == ']') {
-                                break;
+                            if (character == '[') {
+                                depth++;
+                            }
+                            else if (character == ']') {
+                                if (depth == 0) {
+                                    running = 0;
+                                }
+                                depth--;
                             }
                         }
                     }
