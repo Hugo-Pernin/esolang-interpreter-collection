@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define MAX_PATH_LENGTH 4096
 #define WIDTH 80
