@@ -103,6 +103,15 @@ int main() {
                         b = pop(&stack);
                         push(&stack, b % a);
                         break;
+                    case '!':
+                        a = pop(&stack);
+                        push(&stack, a == 0);
+                        break;
+                    case '`':
+                        a = pop(&stack);
+                        b = pop(&stack);
+                        push(&stack, b > a);
+                        break;
                     default:
                         break;
                 }
