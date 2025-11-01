@@ -129,6 +129,22 @@ int main() {
                     case '?':
                         direction = rand() % 4;
                         break;
+                    case '_':
+                        a = pop(&stack);
+                        if (a == 0) {
+                            direction = RIGHT;
+                        } else {
+                            direction = LEFT;
+                        }
+                        break;
+                    case '|':
+                        a = pop(&stack);
+                        if (a == 0) {
+                            direction = DOWN;
+                        } else {
+                            direction = UP;
+                        }
+                        break;
                     default:
                         break;
                 }
