@@ -47,16 +47,16 @@ bool isADigit(char character) {
 void moveForward(struct GridPointer *gridPointer, enum Direction direction) {
     switch (direction) {
         case UP:
-            gridPointer->y++;
+            gridPointer->y = (gridPointer->y - 1) % HEIGHT;
             break;
         case RIGHT:
-            gridPointer->x++;
+            gridPointer->x = (gridPointer->x + 1) % WIDTH;
             break;
         case DOWN:
-            gridPointer->y--;
+            gridPointer->y = (gridPointer->y + 1) % HEIGHT;
             break;
         case LEFT:
-            gridPointer->x--;
+            gridPointer->x = (gridPointer->x - 1) % WIDTH;
             break;
     }
 }
