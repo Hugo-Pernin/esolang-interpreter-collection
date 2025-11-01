@@ -187,6 +187,16 @@ int main() {
                     case '#':
                         moveForward(&gridPointer, direction);
                         break;
+                    case '&':
+                        long numericValue;
+                        scanf("%ld", &numericValue);
+                        push(&stack, numericValue);
+                        break;
+                    case '~':
+                        char characterValue;
+                        scanf("%c", &characterValue);
+                        push(&stack, characterValue);
+                        break;
                     default:
                         break;
                 }
