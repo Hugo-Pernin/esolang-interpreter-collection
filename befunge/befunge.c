@@ -64,6 +64,8 @@ int main() {
         struct Stack stack = {.size = 0, .data = NULL};
         bool stringMode = false;
         char character;
+        long a;
+        long b;
 
         do {
             character = fgetc(fptr);
@@ -76,6 +78,31 @@ int main() {
                 push(&stack, character - 48);
             } else {
                 switch (character) {
+                    case '+':
+                        a = pop(&stack);
+                        b = pop(&stack);
+                        push(&stack, a + b);
+                        break;
+                    case '-':
+                        a = pop(&stack);
+                        b = pop(&stack);
+                        push(&stack, b - a);
+                        break;
+                    case '*':
+                        a = pop(&stack);
+                        b = pop(&stack);
+                        push(&stack, a * b);
+                        break;
+                    case '/':
+                        a = pop(&stack);
+                        b = pop(&stack);
+                        push(&stack, b / a);
+                        break;
+                    case '%':
+                        a = pop(&stack);
+                        b = pop(&stack);
+                        push(&stack, b % a);
+                        break;
                     default:
                         break;
                 }
