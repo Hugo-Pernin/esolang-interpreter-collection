@@ -44,6 +44,8 @@ bool isADigit(char character) {
 }
 
 int main() {
+    srand(time(NULL));
+
     printf("----- Befunge interpreter -----\n");
     printf("Please enter your file path: ");
     
@@ -111,6 +113,21 @@ int main() {
                         a = pop(&stack);
                         b = pop(&stack);
                         push(&stack, b > a);
+                        break;
+                    case '>':
+                        direction = RIGHT;
+                        break;
+                    case '<':
+                        direction = LEFT;
+                        break;
+                    case '^':
+                        direction = UP;
+                        break;
+                    case 'v':
+                        direction = DOWN;
+                        break;
+                    case '?':
+                        direction = rand() % 4;
                         break;
                     default:
                         break;
