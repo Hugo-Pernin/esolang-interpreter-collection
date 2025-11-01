@@ -43,6 +43,23 @@ bool isADigit(char character) {
     return character >= 48 && character <= 57;
 }
 
+void moveForward(struct GridPointer *gridPointer, enum Direction direction) {
+    switch (direction) {
+        case UP:
+            gridPointer->y++;
+            break;
+        case RIGHT:
+            gridPointer->x++;
+            break;
+        case DOWN:
+            gridPointer->y--;
+            break;
+        case LEFT:
+            gridPointer->x--;
+            break;
+    }
+}
+
 int main() {
     srand(time(NULL));
 
@@ -166,6 +183,9 @@ int main() {
                     case ',':
                         a = pop(&stack);
                         printf("%c", a);
+                        break;
+                    case '#':
+                        moveForward(&gridPointer, direction);
                         break;
                     default:
                         break;
