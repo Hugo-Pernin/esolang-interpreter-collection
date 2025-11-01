@@ -39,6 +39,10 @@ long pop(struct Stack *stack) {
     return value;
 }
 
+bool isADigit(char character) {
+    return character >= 48 && character <= 57;
+}
+
 int main() {
     printf("----- Befunge interpreter -----\n");
     printf("Please enter your file path: ");
@@ -68,9 +72,13 @@ int main() {
                 break;
             }
 
-            switch (character) {
-                default:
-                    break;
+            if (isADigit(character)) {
+                push(&stack, character - 48);
+            } else {
+                switch (character) {
+                    default:
+                        break;
+                }
             }
         } while(1);
 
