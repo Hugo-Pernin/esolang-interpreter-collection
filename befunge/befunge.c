@@ -90,7 +90,7 @@ int main() {
         do {
             character = fgetc(fptr);
 
-            if (feof(fptr)) {
+            if (feof(fptr) || character == '@') {
                 break;
             }
 
