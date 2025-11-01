@@ -145,6 +145,28 @@ int main() {
                             direction = UP;
                         }
                         break;
+                    case ':':
+                        a = pop(&stack);
+                        push(&stack, a);
+                        push(&stack, a);
+                        break;
+                    case '\'':
+                        a = pop(&stack);
+                        b = pop(&stack);
+                        push(&stack, a);
+                        push(&stack, b);
+                        break;
+                    case '$':
+                        pop(&stack);
+                        break;
+                    case '.':
+                        a = pop(&stack);
+                        printf("%ld", a);
+                        break;
+                    case ',':
+                        a = pop(&stack);
+                        printf("%c", a);
+                        break;
                     default:
                         break;
                 }
