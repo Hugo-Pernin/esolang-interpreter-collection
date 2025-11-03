@@ -124,6 +124,7 @@ int main() {
                 }
             }
         } while (1);
+        fclose(fptr);
 
         do {
             character = playfield[gridPointer.y][gridPointer.x];
@@ -206,6 +207,8 @@ int main() {
                         character = playfield[gridPointer.y][gridPointer.x];
                         while (character != '"') {
                             push(&stack, character);
+                            moveForward(&gridPointer, direction);
+                            character = playfield[gridPointer.y][gridPointer.x];
                         }
                         break;
                     case ':':
@@ -263,9 +266,11 @@ int main() {
                         break;
                 }
             }
+
             moveForward(&gridPointer, direction);
         } while(1);
 
+        printf("\n");
         free(stack.data);
     }
 }
