@@ -124,12 +124,6 @@ int main() {
                 }
             }
         } while (1);
-        for (int i = 0; i < NBLINES; i++) {
-            for (int j = 0; j < NBCOLUMNS; j++) {
-                printf("%c", playfield[i][j]);
-            }
-            printf("\n");
-        }
 
         do {
             character = playfield[gridPointer.y][gridPointer.x];
