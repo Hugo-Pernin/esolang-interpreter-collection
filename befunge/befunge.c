@@ -207,6 +207,13 @@ int main() {
                             direction = UP;
                         }
                         break;
+                    case '"':
+                        moveForward(&gridPointer, direction);
+                        character = playfield[gridPointer.y][gridPointer.x];
+                        while (character != '"') {
+                            push(&stack, character);
+                        }
+                        break;
                     case ':':
                         a = pop(&stack);
                         push(&stack, a);
