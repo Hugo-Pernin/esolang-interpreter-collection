@@ -86,6 +86,9 @@ int main() {
         char character;
         long a;
         long b;
+        long v;
+        long x;
+        long y;
 
         // File loading
         char playfield[NBLINES][NBCOLUMNS];
@@ -129,9 +132,9 @@ int main() {
         }
 
         do {
-            character = fgetc(fptr);
+            character = playfield[gridPointer.y][gridPointer.x];
 
-            if (feof(fptr) || character == '@') {
+            if (character == '@') {
                 break;
             }
 
@@ -229,6 +232,22 @@ int main() {
                     case '#':
                         moveForward(&gridPointer, direction);
                         break;
+                    case 'g':
+                        y = pop(&stack);
+                        x = pop(&stack);
+                        v = 0;
+                        if (x >= 0 && x < NBCOLUMNS && y >= 0 && y < NBLINES) {
+                            v = *playfield[y, x];
+                        }
+                        break;
+                    case 'p':
+                        y = pop(&stack);
+                        x = pop(&stack);
+                        v = pop(&stack);
+                        if (x >= 0 && x < NBCOLUMNS && y >= 0 && y < NBLINES) {
+                            *playfield[y, x] = v;
+                        }
+                        break;
                     case '&':
                         long numericValue;
                         scanf("%ld", &numericValue);
@@ -243,6 +262,7 @@ int main() {
                         break;
                 }
             }
+            moveForward(&gridPointer, direction);
         } while(1);
 
         free(stack.data);
