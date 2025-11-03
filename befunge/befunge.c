@@ -4,8 +4,8 @@
 #include <time.h>
 
 #define MAX_PATH_LENGTH 4096
-#define WIDTH 80
-#define HEIGHT 25
+#define NBLINES 25
+#define NBCOLUMNS 80
 
 enum Direction {
     UP,
@@ -47,16 +47,16 @@ bool isADigit(char character) {
 void moveForward(struct GridPointer *gridPointer, enum Direction direction) {
     switch (direction) {
         case UP:
-            gridPointer->y = (gridPointer->y - 1) % HEIGHT;
+            gridPointer->y = (gridPointer->y - 1) % NBLINES;
             break;
         case RIGHT:
-            gridPointer->x = (gridPointer->x + 1) % WIDTH;
+            gridPointer->x = (gridPointer->x + 1) % NBCOLUMNS;
             break;
         case DOWN:
-            gridPointer->y = (gridPointer->y + 1) % HEIGHT;
+            gridPointer->y = (gridPointer->y + 1) % NBLINES;
             break;
         case LEFT:
-            gridPointer->x = (gridPointer->x - 1) % WIDTH;
+            gridPointer->x = (gridPointer->x - 1) % NBCOLUMNS;
             break;
     }
 }
@@ -86,6 +86,47 @@ int main() {
         char character;
         long a;
         long b;
+
+        // File loading
+        char playfield[NBLINES][NBCOLUMNS];
+        for (int i = 0; i < NBLINES; i++) {
+            for (int j = 0; j < NBCOLUMNS; j++) {
+                playfield[i][j] = ' ';
+            }
+        }
+        char line = 0;
+        char column = 0;
+        do {
+            character = fgetc(fptr);
+
+            if (feof(fptr)) {
+                break;
+            }
+
+            else if (character == '\n') {
+                if (line < NBLINES) {
+                    line++;
+                } else {
+                    break;
+                }
+                column = 0;
+            }
+
+            else {
+                playfield[line][column] = character;
+                if (column < NBCOLUMNS) {
+                    column++;
+                } else {
+                    break;
+                }
+            }
+        } while (1);
+        for (int i = 0; i < NBLINES; i++) {
+            for (int j = 0; j < NBCOLUMNS; j++) {
+                printf("%c", playfield[i][j]);
+            }
+            printf("\n");
+        }
 
         do {
             character = fgetc(fptr);
